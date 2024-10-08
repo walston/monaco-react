@@ -1,0 +1,9 @@
+.Editor {
+  display: grid;
+  height: 100%;
+  grid-template-rows: "100px auto";
+  grid-template-columns: "auto 400px";
+  grid-template-areas:
+    "header sidebar"
+    "editor sidebar";
+}
