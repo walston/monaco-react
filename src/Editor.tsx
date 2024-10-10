@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 import Editor, { EditorProps } from "@monaco-editor/react";
-import { Monaco } from "@monaco-editor/loader/lib/types";
+import { update } from "./utils";
 
 import "./Editor.css";
 
@@ -17,7 +17,10 @@ import "./Editor.css";
  * Supposition: We won’t have much work to do to handle the props-api. just pass directly to and only worry about styling/async validation
  */
 
-type Props = Pick<EditorProps, "defaultValue" | "defaultPath">;
+type Props = Pick<
+  EditorProps,
+  "defaultValue" | "defaultPath" | "onChange" | "onMount" | "onValidate"
+>;
 
 export default function ConsoleEditor(props: Props) {
   const ref = useRef<any | null>(null);
@@ -33,7 +36,9 @@ export default function ConsoleEditor(props: Props) {
       <div className="header">something</div>
       <Editor
         theme="vs-dark"
-        onMount={(editor) => (ref.current = editor)}
+        onMount={(_ed) => {
+          update();
+        }}
         defaultLanguage="yaml"
         {...props}
       />
