@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
-import Editor from "@monaco-editor/react";
-// import { MonacoYaml } from "monaco-yaml";
+import Editor, { EditorProps } from "@monaco-editor/react";
+import { Monaco } from "@monaco-editor/loader/lib/types";
+
 import "./Editor.css";
 
 /**
@@ -16,25 +17,29 @@ import "./Editor.css";
  * Supposition: We won’t have much work to do to handle the props-api. just pass directly to and only worry about styling/async validation
  */
 
-const DEFAULT_VALUE = `foo: hello
-bar:
-  - baz
-  - bing
-  - boingo
-`;
+type Props = Pick<EditorProps, "defaultValue" | "defaultPath">;
 
-export default function ConsoleEditor() {
+export default function ConsoleEditor(props: Props) {
+  const ref = useRef<any | null>(null);
+  useLayoutEffect(() => {
+    let dispose = () => {};
+    if (ref.current) {
+      dispose = ref.current;
+    }
+  }, [ref.current]);
+
   return (
     <div className="Editor">
-      <div style={{ gridArea: "header" }}>something</div>
-      <div style={{ gridArea: "editor" }}>
-        <Editor
-          theme="vs-dark"
-          defaultLanguage="yaml"
-          defaultValue={DEFAULT_VALUE}
-        />
+      <div className="header">something</div>
+      <Editor
+        theme="vs-dark"
+        onMount={(editor) => (ref.current = editor)}
+        defaultLanguage="yaml"
+        {...props}
+      />
+      <div className="sidebar">
+        <textarea></textarea>
       </div>
-      <div style={{ gridArea: "sidebar" }}></div>
     </div>
   );
 }

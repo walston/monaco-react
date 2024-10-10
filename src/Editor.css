@@ -1,9 +1,26 @@
 .Editor {
   display: grid;
-  height: 100%;
-  grid-template-rows: "100px auto";
-  grid-template-columns: "auto 400px";
+  width: 900px;
+  height: 400px;
+  grid-template-rows: min-content auto;
+  grid-template-columns: auto 200px;
   grid-template-areas:
-    "header sidebar"
+    "header header"
     "editor sidebar";
+}
+
+.header {
+  grid-area: header;
+  background-color: slategrey;
+  padding: 1em 1.5em;
+}
+
+.editor {
+  grid-area: editor;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: salmon;
+  padding: 0 1.5em;
 }
