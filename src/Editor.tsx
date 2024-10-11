@@ -23,14 +23,6 @@ type Props = Pick<
 >;
 
 export default function ConsoleEditor(props: Props) {
-  const ref = useRef<any | null>(null);
-  useLayoutEffect(() => {
-    let dispose = () => {};
-    if (ref.current) {
-      dispose = ref.current;
-    }
-  }, [ref.current]);
-
   return (
     <div className="Editor">
       <div className="header">something</div>

@@ -13,3 +13,14 @@ export function update(options?: MonacoYamlOptions) {
   if (!capture) return;
   capture(options);
 }
+
+window.MonacoEnvironment = {
+  getWorker(moduleId, label) {
+    switch (label) {
+      case "yaml":
+        return new Worker(new URL("monaco-yaml/yaml.worker", import.meta.url));
+      default:
+        throw new Error(`Unknown label ${label}`);
+    }
+  },
+};
