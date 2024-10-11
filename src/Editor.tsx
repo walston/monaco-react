@@ -1,12 +1,15 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React from "react";
 import Editor, { EditorProps } from "@monaco-editor/react";
 import { update } from "./utils";
 
 import "./Editor.css";
+import { DARK_THEME } from "./theming";
 
 /**
 ==  Open Questions  ==
  * How do we get YAML syntax highlighting
+    easy it's built in.
+    monoco-yaml package does some extra work allowing us to load in schemas
  * How do we provide styling? monaco themes?
  * How can we handle the “chrome” edges (where we add the filename and errors)
  * Can this approach be dynamically sized? is there a small version we could put on a builder-tile?
@@ -27,7 +30,7 @@ export default function ConsoleEditor(props: Props) {
     <div className="Editor">
       <div className="header">something</div>
       <Editor
-        theme="vs-dark"
+        theme={DARK_THEME}
         onMount={(_ed) => {
           update();
         }}
