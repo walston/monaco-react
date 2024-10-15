@@ -11,7 +11,7 @@
 
 .header {
   grid-area: header;
-  background-color: slategrey;
+  background-color: #abb;
   padding: 1em 1.5em;
 }
 
@@ -21,6 +21,6 @@
 
 .sidebar {
   grid-area: sidebar;
-  background-color: salmon;
+  background-color: #cdd;
   padding: 0 1.5em;
 }
