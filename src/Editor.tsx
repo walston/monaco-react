@@ -42,7 +42,7 @@ export default function ConsoleEditor(props: Props) {
       <Editor
         options={editorOptions()}
         theme={DARK_THEME}
-        onMount={(_ed) => {
+        onMount={(editor, monaco) => {
           update();
         }}
         defaultLanguage="yaml"
