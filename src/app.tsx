@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Editor from "./Editor";
 
-const DEFAULT_VALUE = `foo: hello
+const DEFAULT_VALUE = `\
+foo: hello
 bar:
   - baz
   - bing
